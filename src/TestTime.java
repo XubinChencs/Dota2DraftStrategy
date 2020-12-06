@@ -20,12 +20,12 @@ public class TestTime {
         //2 heros each
         final int round = 1;
         final int currentDepth = 0;
-        final int depth = 3;
+        final int depth = 6;
 
         for (int heroNum = 11; heroNum < 50; heroNum++) {
             double minimaxTime = 0; //milliseconds
             double minimaxPruningTime = 0; //milliseconds
-            for (int time = 0; time < 10; time++) {
+            for (int time = 0; time < 5; time++) {
                 ArrayList<String> heroPoolArray = new ArrayList<>();
                 Set<String> heroPool;
                 List<String> picked1 = new ArrayList<>();
@@ -72,8 +72,8 @@ public class TestTime {
 //                System.out.println((stopTime - startTime) / 1e6);
             }
             System.out.println(heroNum + ":");
-            System.out.println("minimax: " + minimaxTime / 3);
-            System.out.println("pruning: " + minimaxPruningTime / 3);
+            System.out.println("minimax: " + minimaxTime / 5);
+            System.out.println("pruning: " + minimaxPruningTime / 5);
         }
     }
 }

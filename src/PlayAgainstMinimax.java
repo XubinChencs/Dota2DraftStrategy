@@ -16,8 +16,8 @@ public class PlayAgainstMinimax {
         ArrayList<String> heros = new ArrayList<>(heroData.winRate.keySet());
 
         final int currentDepth = 0;
-        final int depth1 = 1;
-        final int depth2 = 3;
+        final int depth1 = 2;
+        final int depth2 = 1;
 
         final int repeat = 100;
 

@@ -35,7 +35,7 @@ public class MinimaxPruning {
 			return value;
 		} else { // Team2
 			double value = Double.MAX_VALUE;
-			boolean isPick = round % 2 == 0; ////
+			boolean isPick = round % 2 == 0;
 			for (int i = 0; i < curHeroPool.size(); i++) { // pick/ban first hero
 				String firstPick = curHeroPool.get(i);
 				state.update(isPick, false, firstPick);
@@ -61,7 +61,7 @@ public class MinimaxPruning {
 	}
 
 	public String[] nextStepTeam2(State state, int round, int currentDepth, int depth) {
-		double value = -Double.MAX_VALUE;
+		double value = Double.MAX_VALUE;
 		double alpha = -Double.MAX_VALUE;
 		double beta = Double.MAX_VALUE;
 		String[] banPick = new String[2];//banPick[0]: banned hero; banPick[1]: picked hero
@@ -80,10 +80,10 @@ public class MinimaxPruning {
 				for (String select2 : curHeroPool) {
 					if (!select2.equals(select1)) {
 						state.update(isPick, false, select2);
-						double newValue = Math.max(value,  minimax(state, alpha, beta, round + 1, true, currentDepth + 1, depth));
+						double newValue = Math.min(value,  minimax(state, alpha, beta, round + 1, true, currentDepth + 1, depth));
 						if (value > newValue) {
 							value = newValue;
-							alpha = value;
+							beta = Math.min(beta,  value);
 							banPick[0] = select1;
 							banPick[1] = select2;
 						}
@@ -118,7 +118,7 @@ public class MinimaxPruning {
 						double newValue = Math.max(value,  minimax(state, alpha, beta, round, false, currentDepth + 1, depth));
 						if (value < newValue) {
 							value = newValue;
-							alpha = value;
+							alpha = Math.max(alpha, value);
 							banPick[0] = banned;
 							banPick[1] = picked;
 						}

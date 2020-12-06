@@ -16,7 +16,7 @@ public class PlayAgainstRandom {
         ArrayList<String> heros = new ArrayList<>(heroData.winRate.keySet());
 
         final int currentDepth = 0;
-        final int depth = 3;
+        final int depth =  2;
 
         final int repeat = 100;
 
