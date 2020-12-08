@@ -52,14 +52,26 @@ public class State {
 	// get final difference of 1 against 2
 	public double diff() {
 		double value = 0;
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < picked1.size(); i++) {
 			value += heroData.getStrength(picked1.get(i));
-			value -= heroData.getStrength(picked2.get(i));
-			for (int j = 0 ; j < 5; j++) {
+
+			for (int j = 0 ; j < picked1.size(); j++) {
 				if (j > i) {
 					value += heroData.getSynergyRate(picked1.get(i), picked1.get(j));
+				}
+			}
+		}
+
+		for (int i = 0; i < picked2.size(); i++) {
+			value -= heroData.getStrength(picked2.get(i));
+			for (int j = 0; j < picked2.size(); j++) {
+				if (j > i) {
 					value -= heroData.getSynergyRate(picked2.get(i), picked2.get(j));
 				}
+			}
+		}
+		for (int i = 0; i < picked1.size(); i++) {
+			for (int j = 0; j < picked2.size(); j++) {
 				value += heroData.getCounterRate(picked1.get(i), picked2.get(j));
 			}
 		}

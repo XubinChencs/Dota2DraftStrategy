@@ -41,7 +41,7 @@ public class Main {
 		State state = new State(heroData, heroPool, picked1, picked2);
 		
 		Minimax minimax = new Minimax();
-		String[] res = minimax.nextStep(state, round);
+		String[] res = minimax.nextStep(state, round, 0, 1);
 		System.out.println("ban: " + res[0] + ", pick: " + res[1]);
 	}
 }
