@@ -16,12 +16,12 @@ public class Minimax {
 				state.update(false, true, banned);
 				// in round 1, team 1 only needs to ban 1 hero
 				if (round == 1) {
-					value = Math.max(value, minimax(state, round, false, currentDepth, depth));
+					value = Math.max(value, minimax(state, round, false, currentDepth + 1, depth));
 				} else {
 					for (String picked : curHeroPool) { // pick 1 hero
 						if (!picked.equals(banned)) {
 							state.update(true, true, picked);
-							value = Math.max(value,  minimax(state, round, false, currentDepth, depth));
+							value = Math.max(value,  minimax(state, round, false, currentDepth + 1, depth));
 							state.recover(true, true, picked);
 						}
 					}
@@ -60,7 +60,7 @@ public class Minimax {
 			state.update(false, true, banned);
 			// In round 1, Team 1 only need to ban 1 hero;
 			if (round == 1) {
-				double newValue = minimax(state, round, false, currentDepth, depth);
+				double newValue = minimax(state, round, false, currentDepth + 1, depth);
 				if (value < newValue) {
 					value = newValue;
 					banPick[0] = banned;
@@ -69,7 +69,7 @@ public class Minimax {
 				for (String picked : curHeroPool) {
 					if (!picked.equals(banned)) {
 						state.update(true, true, picked);
-						double newValue = Math.max(value,  minimax(state, round, false, currentDepth, depth));
+						double newValue = Math.max(value,  minimax(state, round, false, currentDepth + 1, depth));
 						if (value < newValue) {
 							value = newValue;
 							banPick[0] = banned;
